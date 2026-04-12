@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+// loadign 3d models 
+// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
