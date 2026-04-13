@@ -20,16 +20,36 @@ const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
 const color = 0xFFFFFF;
-const intensity = 3;
+const intensity = 5;
 const light = new THREE.DirectionalLight(color, intensity);
 light.position.set(-1, 2, 4);
 scene.add(light);
 
 function render(time) {
+    const canvas = renderer.domElement;
+
+    if (resizeRendererToDisplaySize(renderer)) {
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.updateProjectionMatrix();
+    }
+
     cube.rotation.x = time / 2000;
     cube.rotation.y = time / 1000;
 
     renderer.render(scene, camera);
+}
+
+function resizeRendererToDisplaySize(renderer) {
+    const canvas = renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+
+    const needResize = canvas.width !== width || canvas.height !== height;
+
+    if (needResize) {
+        renderer.setSize(width, height, false);
+    }
+    return needResize;
 }
 
 renderer.setAnimationLoop(render);
