@@ -7,6 +7,7 @@ const camera = new THREE.PerspectiveCamera(
     0.1,
     1000
 ); // (field of view in deg, aspect ratio, near clipping plane, far clipping plane) 
+
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(
     window.innerWidth,
