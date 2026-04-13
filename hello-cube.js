@@ -9,7 +9,7 @@ const near = 0.1;
 const far = 1000;
 
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-camera.position.z = 2;
+camera.position.z = 3;
 
 const scene = new THREE.Scene();
 
@@ -20,7 +20,7 @@ const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
 const color = 0xFFFFFF;
-const intensity = 5;
+const intensity = 3;
 const light = new THREE.DirectionalLight(color, intensity);
 light.position.set(-1, 2, 4);
 scene.add(light);
