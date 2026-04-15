@@ -24,17 +24,23 @@ const sphereGeometry = new THREE.SphereGeometry(
     heightSegments
 );
 
+const solarSystem = new THREE.Object3D();
+scene.add(solarSystem);
+objects.push(solarSystem);
+
 const sunMaterial = new THREE.MeshPhongMaterial({emissive: 0xffff00, wireframe: true});
 const sunMesh =  new THREE.Mesh(sphereGeometry, sunMaterial);
 sunMesh.scale.set(5, 5, 5); // make the sun large
-scene.add(sunMesh);
+// scene.add(sunMesh);
+solarSystem.add(sunMesh);
 objects.push(sunMesh);
 
 const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244, wireframe: true});
 const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
-earthMesh.position.x = 15;
-earthMesh.scale.set(2.5, 2.5, 2.5); // make the earth smaller
-scene.add(earthMesh);
+earthMesh.position.x = 13;
+earthMesh.scale.set(3, 3, 3); // make the earth smaller
+//sunMesh.add(earthMesh);
+solarSystem.add(earthMesh);
 objects.push(earthMesh);
 
 {
@@ -67,7 +73,7 @@ function render( time ) {
 
 	objects.forEach( ( obj ) => {
 		obj.rotation.y = time;
-        obj.rotation.x = time * 0.5;
+        //obj.rotation.x = time;
 	} );
 
 	renderer.render( scene, camera );
