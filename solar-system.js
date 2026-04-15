@@ -16,8 +16,8 @@ const objects = [];
 
 // use just one sphere for everything
 const radius = 1;
-const widthSegments = 24;
-const heightSegments = 12;
+const widthSegments = 64;
+const heightSegments = 32;
 const sphereGeometry = new THREE.SphereGeometry(
     radius,
     widthSegments,
@@ -28,7 +28,7 @@ const solarSystem = new THREE.Object3D();
 scene.add(solarSystem);
 objects.push(solarSystem);
 
-const sunMaterial = new THREE.MeshPhongMaterial({emissive: 0xffff00, wireframe: true});
+const sunMaterial = new THREE.MeshPhongMaterial({emissive: 0xffff00, flatShading: true, shininess: 130, wireframe: true});
 const sunMesh =  new THREE.Mesh(sphereGeometry, sunMaterial);
 sunMesh.scale.set(5, 5, 5); // make the sun large
 // scene.add(sunMesh);
@@ -41,7 +41,7 @@ earthOrbit.position.x = 13;
 solarSystem.add(earthOrbit);
 objects.push(earthOrbit);
 
-const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244, wireframe: true});
+const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, shininess: 30, emissive: 0x112244, wireframe: true});
 const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
 // earthMesh.position.x = 13;
 earthMesh.scale.set(2.5, 2.5, 2.5); // make the earth smaller
@@ -54,7 +54,7 @@ const moonOrbit = new THREE.Object3D();
 moonOrbit.position.x = 4;
 earthOrbit.add(moonOrbit);
 
-const moonMaterial = new THREE.MeshPhongMaterial({color: 0x888888, emissive: 0x222222, wireframe: true});
+const moonMaterial = new THREE.MeshPhongMaterial({color: 0x888888, shininess: 30, emissive: 0x222222, wireframe: true});
 const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
 moonMesh.scale.set(1, 1, 1); // make the moon smaller
 moonOrbit.add(moonMesh);
@@ -90,7 +90,7 @@ function render( time ) {
 
 	objects.forEach( ( obj ) => {
 		obj.rotation.y = time;
-        //obj.rotation.x = time;
+        //obj.rotation.x += time;
 	} );
 
 	renderer.render( scene, camera );
